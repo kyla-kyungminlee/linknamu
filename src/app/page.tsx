@@ -7,11 +7,11 @@ import { links, profile } from "@/data/profile";
 // 표시되는 내용은 src/data/profile.ts에서 바꿀 수 있습니다.
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-md flex-1 flex-col items-center px-4 py-16">
+    <main className="mx-auto flex w-full max-w-[26rem] flex-1 flex-col items-center px-6 pb-20 pt-24 sm:pt-28">
       <Profile {...profile} />
 
-      <nav aria-label="링크 목록" className="mt-10 w-full">
-        <ul className="flex flex-col gap-6">
+      <nav aria-label="링크 목록" className="mt-12 w-full">
+        <ul className="flex flex-col gap-4">
           {links.map((link) => (
             <li key={link.id}>
               <LinkCard {...link} />

@@ -15,7 +15,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label="다크모드 전환"
-      className="fixed right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg shadow-sm transition hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900"
+      className="fixed right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/45 text-base shadow-[0_6px_18px_-10px_rgba(76,52,110,0.4)] backdrop-blur-xl transition duration-300 hover:bg-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70 dark:border-white/10 dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
     >
       {/* 아이콘은 CSS로 전환해서 서버/클라이언트 렌더링 결과가 항상 같도록 합니다. */}
       <span className="dark:hidden" aria-hidden>🌙</span>
