@@ -1,4 +1,4 @@
-import LinkCard from "@/components/LinkCard";
+import LinkList from "@/components/LinkList";
 import Profile from "@/components/Profile";
 import { links, profile } from "@/data/profile";
 
@@ -11,13 +11,7 @@ export default function Home() {
       <Profile {...profile} />
 
       <nav aria-label="링크 목록" className="mt-12 w-full">
-        <ul className="flex flex-col gap-4">
-          {links.map((link) => (
-            <li key={link.id}>
-              <LinkCard {...link} />
-            </li>
-          ))}
-        </ul>
+        <LinkList links={links} />
       </nav>
     </main>
   );

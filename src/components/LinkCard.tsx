@@ -12,13 +12,21 @@ function recordClick(id: string) {
   }
 }
 
-export default function LinkCard({ id, title, url, emoji }: LinkItem) {
+type LinkCardProps = LinkItem & {
+  count: number;
+  onClicked?: (id: string) => void;
+};
+
+export default function LinkCard({ id, title, url, emoji, count, onClicked }: LinkCardProps) {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => recordClick(id)}
+      onClick={() => {
+        recordClick(id);
+        onClicked?.(id);
+      }}
       className="flex w-full items-center gap-3 rounded-[1.375rem] border border-white/70 bg-white/45 px-4 py-3.5 font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_10px_30px_-16px_rgba(76,52,110,0.35)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/60 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_14px_34px_-16px_rgba(76,52,110,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_10px_30px_-16px_rgba(0,0,0,0.6)] dark:hover:bg-white/[0.1]"
     >
       {emoji && (
@@ -27,8 +35,11 @@ export default function LinkCard({ id, title, url, emoji }: LinkItem) {
         </span>
       )}
       <span className="flex-1 text-center text-[0.9375rem]">{title}</span>
-      {/* 이모지 쪽과 균형을 맞추기 위한 빈 공간 */}
-      {emoji && <span className="w-9 shrink-0" aria-hidden />}
+      {/* 클릭 수 (이모지 쪽과 같은 최소 너비로 제목을 가운데에 유지) */}
+      <span className="min-w-9 shrink-0 whitespace-nowrap text-right text-xs font-normal tabular-nums opacity-55">
+        <span className="sr-only">클릭 수 </span>
+        {count.toLocaleString("ko-KR")}회
+      </span>
     </a>
   );
 }
